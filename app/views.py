@@ -7,6 +7,8 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 
+# TODO: Change view functions to clases.
+
 
 def interested_act(request):
     """Renders the home page."""
@@ -14,10 +16,10 @@ def interested_act(request):
     return render(
         request,
         'app/interested.html',
-        context_instance = RequestContext(request,
+        context_instance=RequestContext(request,
         {
-            'title':'Which Act are you interested in?',
-            'year':datetime.now().year,
+            'title': 'Which Act are you interested in?',
+            'year': datetime.now().year,
         })
     )
 
@@ -28,10 +30,10 @@ def vote_act(request):
     return render(
         request,
         'app/vote.html',
-        context_instance = RequestContext(request,
+        context_instance=RequestContext(request,
         {
-            'title':'Vote the act',
-            'year':datetime.now().year,
+            'title': 'Vote the act',
+            'year': datetime.now().year,
         })
     )
 
@@ -42,10 +44,10 @@ def results(request):
     return render(
         request,
         'app/results.html',
-        context_instance = RequestContext(request,
+        context_instance=RequestContext(request,
         {
-            'title':'See how you have voted and how the envoys did.',
-            'message':'Votes.',
-            'year':datetime.now().year,
+            'title': 'See how you have voted and how the envoys did.',
+            'message': 'Votes.',
+            'year': datetime.now().year,
         })
     )
