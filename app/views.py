@@ -7,6 +7,7 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 
+
 def interested_act(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
@@ -20,6 +21,7 @@ def interested_act(request):
         })
     )
 
+
 def vote_act(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
@@ -32,6 +34,7 @@ def vote_act(request):
             'year':datetime.now().year,
         })
     )
+
 
 def results(request):
     """Renders the about page."""

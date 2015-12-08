@@ -3,7 +3,7 @@ import json
 
 nActs = 0
 
-for page in range(1,46):
+for page in range(1, 46):
     h = httplib2.Http(".cache")
     resp, content = h.request("https://api-v3.mojepanstwo.pl/dane/sejm_druki?_type=objects&page=" + str(page), "GET")
     # print(resp)
