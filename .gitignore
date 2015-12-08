@@ -1,3 +1,9 @@
+# PyCharm files
+.idea/
+
+# SQLite database file
+/db.sqlite3
+
 # Python cache
 __pycache__/
 *.pyc
