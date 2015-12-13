@@ -2,10 +2,12 @@
 Definition of views.
 """
 
-from django.shortcuts import render
-from django.http import HttpRequest
-from django.template import RequestContext
 from datetime import datetime
+
+from django.http import HttpRequest
+from django.shortcuts import render
+from django.template import RequestContext
+
 
 # TODO: Change view functions to clases.
 
@@ -38,12 +40,12 @@ def vote_act(request):
     )
 
 
-def results(request):
+def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/results.html',
+            'app/about.html',
         context_instance=RequestContext(request,
         {
             'title': 'See how you have voted and how the envoys did.',

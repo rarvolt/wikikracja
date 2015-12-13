@@ -13,12 +13,15 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-          <ul class="nav navbar-nav">
-            <li><a href="{% url 'interested_act' %}">Acts</a></li>
-            <li><a href="{% url 'vote_act' %}">Vote</a></li>
-            <li><a href="{% url 'results' %}">Results</a></li>
-          </ul>
-          {% include 'app/loginpartial.html' %}
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="#">Acts</a></li>
+                <li><a href="#">Vote</a></li>
+                <li><a href="#">Results</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            </ul>
+            {% include 'app/loginpartial.html' %}
         </div>
     </div>
 
@@ -26,7 +29,7 @@
 {% block content %}{% endblock %}
         <hr/>
         <footer>
-            <p>&copy; {{ year }} - Wikikracja</p>
+            <p>&copy;2015 - Wikikracja</p>
         </footer>
     </div>
 

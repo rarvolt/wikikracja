@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+        <h3>Activation failed</h3>
+        <p>Activation failed for some mysterious reason.<br/>
+            <a href="{% url 'contact' %}">Contact us</a> to get help.<br/>
+            Activation key: <code>{{ activation_key }}</code></p>
+    </div>
+</div>
+
+{% endblock %}
