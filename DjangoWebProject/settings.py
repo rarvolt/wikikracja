@@ -166,6 +166,3 @@ LOGGING = {
 
 # Specify the default test runner.
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
-# django-registration specific settings
-ACCOUNT_ACTIVATION_DAYS = 7
