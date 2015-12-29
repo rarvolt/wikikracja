@@ -3,12 +3,13 @@ App urls definition
 """
 
 from django.conf.urls import url
-from django.views.generic import TemplateView
 
-# TODO: Change string view arguments to callables.
+from .views import IndexView, AboutView, ContactView, ListActsView
+
 
 urlpatterns = [
-    url(r'^$', 'app.views.interested_act', name='index'),
-    url(r'^contact/$', TemplateView.as_view(template_name="app/contact.html"), name='contact'),
-    url(r'^about/$', TemplateView.as_view(template_name="app/about.html"), name='about'),
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^acts/$', ListActsView.as_view(), name='acts'),
+    url(r'^contact/$', ContactView.as_view(), name='contact'),
+    url(r'^about/$', AboutView.as_view(), name='about'),
 ]

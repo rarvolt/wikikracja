@@ -2,54 +2,26 @@
 Definition of views.
 """
 
-from datetime import datetime
+from django.views.generic import TemplateView, ListView
 
-from django.http import HttpRequest
-from django.shortcuts import render
-from django.template import RequestContext
+from .models import Act
 
 
-# TODO: Change view functions to clases.
-
-
-def interested_act(request):
+class IndexView(TemplateView):
     """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/interested.html',
-        context_instance=RequestContext(request,
-        {
-            'title': 'Which Act are you interested in?',
-            'year': datetime.now().year,
-        })
-    )
+    template_name = 'app/index.html'
 
 
-def vote_act(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/vote.html',
-        context_instance=RequestContext(request,
-        {
-            'title': 'Vote the act',
-            'year': datetime.now().year,
-        })
-    )
-
-
-def about(request):
+class AboutView(TemplateView):
     """Renders the about page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-            'app/about.html',
-        context_instance=RequestContext(request,
-        {
-            'title': 'See how you have voted and how the envoys did.',
-            'message': 'Votes.',
-            'year': datetime.now().year,
-        })
-    )
+    template_name = 'app/about.html'
+
+
+class ContactView(TemplateView):
+    """Renders the contact page."""
+    template_name = 'app/contact.html'
+
+
+class ListActsView(ListView):
+    model = Act
+    context_object_name = 'acts'
