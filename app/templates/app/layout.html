@@ -7,21 +7,42 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    {% block styles %}{% endblock %}
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
 </head>
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="#">Acts</a></li>
-                <li><a href="#">Vote</a></li>
-                <li><a href="#">Results</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-            </ul>
-            {% include 'app/loginpartial.html' %}
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'index' %}">Wikikracja</a>
+            </div>
+            <div class="collapse navbar-collapse" id="topNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'acts' %}">Acts</a></li>
+                    <li><a href="#">Vote</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li>Hello <a href="#TODO-user-area">{{ user.username }}</a></li>
+                    <li><a href="{% url 'auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'registration_register' %}"><span class="glyphicon glyphicon-user"></span> Sign
+                        Up</a></li>
+                    <li><a href="{% url 'auth_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 
