@@ -1,5 +1,8 @@
 # PyCharm files
-.idea/
+/.idea
+
+# HttpLib2 cache
+/.cache
 
 # SQLite database file
 /db.sqlite3

@@ -1,10 +1,11 @@
-import httplib2
 import json
+
+import httplib2
 
 nActs = 0
 
 for page in range(1, 46):
-    h = httplib2.Http(".cache")
+    h = httplib2.Http(".cache", disable_ssl_certificate_validation=True)
     resp, content = h.request("https://api-v3.mojepanstwo.pl/dane/sejm_druki?_type=objects&page=" + str(page), "GET")
     # print(resp)
     # print(content)
