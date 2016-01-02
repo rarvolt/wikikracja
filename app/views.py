@@ -2,8 +2,12 @@
 Definition of views.
 """
 
-from django.views.generic import TemplateView, ListView
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.views.generic import TemplateView, ListView, View
 
+from .mixins import LoginRequiredMixin
 from .models import Act
 
 
@@ -25,3 +29,16 @@ class ContactView(TemplateView):
 class ListActsView(ListView):
     model = Act
     context_object_name = 'acts'
+
+
+class VoteActView(LoginRequiredMixin, View):
+    """User voted"""
+    undo = False
+
+    def get(self, request, *args, **kwargs):
+        act = get_object_or_404(Act, act_id=kwargs['act_id'])
+        if self.undo:
+            act.users.remove(request.user)
+        else:
+            act.users.add(request.user)
+        return HttpResponseRedirect(reverse('acts'))

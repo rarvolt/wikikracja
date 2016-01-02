@@ -2,7 +2,9 @@
 
 {% block styles %}
 <style rel="stylesheet">
-
+    .vote {
+    width: 80px;
+    }
 </style>
 {% endblock %}
 
@@ -21,8 +23,14 @@
         <tr>
             <td>{{ act.act_id }}</td>
             <td><a href="{{ act.url }}" target="_blank">{{ act.title }}</a></td>
-            <td>{{ act.votes }}</td>
-            <td><a href="#TODO-vote-url">Vote</a></td>
+            <td>{{ act.count }}</td>
+            <td class="vote">
+                {% if user in act.users.all %}
+                <a href="{% url 'act_unvote' act.act_id %}" class="btn btn-info btn-sm btn-block">Undo vote</a>
+                {% else %}
+                <a href="{% url 'act_vote' act.act_id %}" class="btn btn-primary btn-sm btn-block">Vote</a>
+                {% endif %}
+            </td>
         </tr>
         {% empty %}
         <tr>

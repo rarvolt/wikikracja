@@ -24,16 +24,18 @@
             </div>
             <div class="collapse navbar-collapse" id="topNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'acts' %}">Acts</a></li>
                     <li><a href="#">Vote</a></li>
                     <li><a href="#">Results</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated and user.is_staff %}
+                    <li><a href="#settings"><span class="text-danger">Settings</span></a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                    <li>Hello <a href="#TODO-user-area">{{ user.username }}</a></li>
+                    <li>Hello<a href="#TODO-user-area">{{ user.username }}</a></li>
                     <li><a href="{% url 'auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                     </li>
                     {% else %}
