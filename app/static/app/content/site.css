@@ -21,6 +21,10 @@ textarea {
     display: inline-block;
 }
 
+.nav li a {
+    display: inline-block;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

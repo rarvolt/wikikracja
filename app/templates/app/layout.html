@@ -31,6 +31,7 @@
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated and user.is_staff %}
                     <li><a href="#settings"><span class="text-danger">Settings</span></a></li>
+                    <li><a href="/admin"><span class="text-danger">Admin</span></a></li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -58,7 +59,6 @@
 
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
-    <script src="{% static 'app/scripts/respond.js' %}"></script>
 {% block scripts %}{% endblock %}
 
 </body>
