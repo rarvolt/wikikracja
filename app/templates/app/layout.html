@@ -30,7 +30,7 @@
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated and user.is_staff %}
-                    <li><a href="#settings"><span class="text-danger">Settings</span></a></li>
+                    <li><a href="{% url 'settings' %}"><span class="text-danger">Settings</span></a></li>
                     <li><a href="/admin"><span class="text-danger">Admin</span></a></li>
                     {% endif %}
                 </ul>

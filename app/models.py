@@ -51,6 +51,6 @@ class EnvoyChoice(models.Model):
     no_count = models.IntegerField(default=0)
 
 
-class Setting(models.Model):
-    name = models.CharField(max_length=100)
-    value = models.CharField(max_length=200)
+class Settings(models.Model):
+    act_count_threshold = models.PositiveIntegerField(default=0)
+    act_count_page = models.PositiveIntegerField(default=0)

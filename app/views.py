@@ -5,10 +5,10 @@ Definition of views.
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView, ListView, View
+from django.views.generic import TemplateView, ListView, View, UpdateView
 
 from .mixins import LoginRequiredMixin
-from .models import Act
+from .models import Act, Settings
 
 
 class IndexView(TemplateView):
@@ -42,3 +42,12 @@ class VoteActView(LoginRequiredMixin, View):
         else:
             act.users.add(request.user)
         return HttpResponseRedirect(reverse('acts'))
+
+
+class SettingsView(UpdateView):
+    model = Settings
+    fields = ['act_count_threshold', 'act_count_page']
+    template_name_suffix = '_update'
+
+    def get_object(self, queryset=None):
+        return Settings.objects.all()[0]
