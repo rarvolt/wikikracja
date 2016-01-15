@@ -29,6 +29,7 @@ class ContactView(TemplateView):
 class ListActsView(ListView):
     model = Act
     context_object_name = 'acts'
+    paginate_by = Settings.objects.get(pk=1).act_count_page
 
 
 class VoteActView(LoginRequiredMixin, View):
@@ -48,6 +49,7 @@ class SettingsView(UpdateView):
     model = Settings
     fields = ['act_count_threshold', 'act_count_page']
     template_name_suffix = '_update'
+    success_url = '/settings/'
 
     def get_object(self, queryset=None):
-        return Settings.objects.all()[0]
+        return Settings.objects.get(pk=1)
