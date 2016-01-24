@@ -2,13 +2,15 @@
 Definition of views.
 """
 
+from datetime import datetime, timedelta
+
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, ListView, View, UpdateView
 
 from .mixins import LoginRequiredMixin
-from .models import Act, Settings
+from .models import Act, Votes, Settings
 
 
 class IndexView(TemplateView):
@@ -29,7 +31,7 @@ class ContactView(TemplateView):
 class ListActsView(ListView):
     model = Act
     context_object_name = 'acts'
-    paginate_by = Settings.objects.get(pk=1).act_count_page
+    paginate_by = 10  # Settings.objects.all()[0].act_count_page
 
 
 class VoteActView(LoginRequiredMixin, View):
@@ -42,6 +44,15 @@ class VoteActView(LoginRequiredMixin, View):
             act.users.remove(request.user)
         else:
             act.users.add(request.user)
+
+        if act.count >= 20:  # Settings.objects.get(pk=1).act_threshold
+            now = datetime.now()
+            duration = timedelta(days=20)  # Settings.objects.get(pk=1).vote_duration
+            vote = Votes(act=act,
+                         vote_start=now,
+                         vote_end=now + duration)
+            vote.save()
+
         return HttpResponseRedirect(reverse('acts'))
 
 
@@ -52,4 +63,4 @@ class SettingsView(UpdateView):
     success_url = '/settings/'
 
     def get_object(self, queryset=None):
-        return Settings.objects.get(pk=1)
+        return Settings.objects.all()[0]

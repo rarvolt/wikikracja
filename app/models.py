@@ -2,7 +2,7 @@
 Definition of models.
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -52,5 +52,6 @@ class EnvoyChoice(models.Model):
 
 
 class Settings(models.Model):
-    act_count_threshold = models.PositiveIntegerField(default=0)
+    act_threshold = models.PositiveIntegerField(default=0)
     act_count_page = models.PositiveIntegerField(default=0)
+    vote_duration = models.DurationField(default=int(timedelta().total_seconds()))
